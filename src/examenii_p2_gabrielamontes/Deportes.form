@@ -135,7 +135,7 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="jmi_creartorneo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+            <Property name="text" type="java.lang.String" value="Crear torneo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmi_creartorneoActionPerformed"/>
@@ -143,7 +143,7 @@
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jmi_guardar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
         </MenuItem>
       </SubComponents>
@@ -287,6 +287,9 @@
                   <TreeModel code="Torneos&#xa; Q1&#xa; Q2&#xa; Q4&#xa; Q5"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtree_periodosMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

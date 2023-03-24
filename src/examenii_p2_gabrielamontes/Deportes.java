@@ -1,5 +1,6 @@
 package examenii_p2_gabrielamontes;
 
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -107,7 +108,7 @@ public class Deportes extends javax.swing.JFrame {
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jmi_creartorneo.setText("jMenuItem1");
+        jmi_creartorneo.setText("Crear torneo");
         jmi_creartorneo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_creartorneoActionPerformed(evt);
@@ -115,7 +116,7 @@ public class Deportes extends javax.swing.JFrame {
         });
         pp_deporte.add(jmi_creartorneo);
 
-        jmi_guardar.setText("jMenuItem1");
+        jmi_guardar.setText("Guardar");
         pp_deporte.add(jmi_guardar);
 
         jPanel3.setBackground(new java.awt.Color(236, 232, 224));
@@ -168,6 +169,11 @@ public class Deportes extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Q5");
         treeNode1.add(treeNode2);
         jtree_periodos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtree_periodos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtree_periodosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtree_periodos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 640, 630));
@@ -192,22 +198,23 @@ public class Deportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmi_creartorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_creartorneoActionPerformed
-     
+        String nombretorneo = JOptionPane.showInputDialog("Ingrese el nombre del torneo ");
+        
     }//GEN-LAST:event_jmi_creartorneoActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
-      
+
         DefaultTreeModel modelo = (DefaultTreeModel) jtree_periodos.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
         for (int i = 0; i < raiz.getChildCount(); i++) {
-              Deporte p = new Deporte(tf_creardeportenombre.getText());
-        DefaultMutableTreeNode lc_obj = new DefaultMutableTreeNode(p);
+            Deporte p = new Deporte(tf_creardeportenombre.getText());
+            DefaultMutableTreeNode lc_obj = new DefaultMutableTreeNode(p);
             DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) raiz.getChildAt(i);
             nodo_seleccionado.add(lc_obj);
             modelo.reload();
         }
-        
+        tf_creardeportenombre.setText("");
+
         jf_creardeporte.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -216,6 +223,23 @@ public class Deportes extends javax.swing.JFrame {
         jf_creardeporte.setLocationRelativeTo(this);
         jf_creardeporte.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jtree_periodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree_periodosMouseClicked
+        if (evt.isMetaDown()) {
+            int row = jtree_periodos.getClosestRowForLocation(evt.getX(), evt.getY());
+            jtree_periodos.setSelectionRow(row);
+            Object v1
+                    = jtree_periodos.getSelectionPath().
+                            getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+        }
+        if (nodo_seleccionado.getUserObject() instanceof Deporte) {
+            deporteselect = (Deporte) nodo_seleccionado.
+                    getUserObject();
+            pp_deporte.show(evt.getComponent(),
+                    evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jtree_periodosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -277,4 +301,6 @@ public class Deportes extends javax.swing.JFrame {
     private javax.swing.JPopupMenu pp_deporte;
     private javax.swing.JTextField tf_creardeportenombre;
     // End of variables declaration//GEN-END:variables
+ DefaultMutableTreeNode nodo_seleccionado;
+    Deporte deporteselect;
 }
