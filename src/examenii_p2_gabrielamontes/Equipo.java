@@ -4,6 +4,8 @@
  */
 package examenii_p2_gabrielamontes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gabriela Montes
@@ -11,6 +13,7 @@ package examenii_p2_gabrielamontes;
 public class Equipo {
     private String nombre;
     private int puntos;
+    private ArrayList <Partido> listapartidos=new ArrayList();
 
     public Equipo(String nombre, int puntos) {
         this.nombre = nombre;
@@ -33,9 +36,18 @@ public class Equipo {
         this.puntos = puntos;
     }
 
+    public ArrayList<Partido> getListapartidos() {
+        return listapartidos;
+    }
+
+    public void setListapartidos(ArrayList<Partido> listapartidos) {
+        this.listapartidos = listapartidos;
+    }
+    
+
     @Override
     public String toString() {
-        return  nombre;
+        return  nombre +" "+puntos;
     }
     
 }
