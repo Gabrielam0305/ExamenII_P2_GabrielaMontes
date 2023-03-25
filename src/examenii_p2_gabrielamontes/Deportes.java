@@ -1,9 +1,11 @@
 package examenii_p2_gabrielamontes;
 
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -530,10 +532,19 @@ public class Deportes extends javax.swing.JFrame {
 
     private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
 
-        
-        
-        
-     double largo = deporteselect.getTorneos().size();
+        JFileChooser fc = new JFileChooser();
+
+        File archivo = null;
+        int seleccion = fc.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            archivo = fc.getSelectedFile();
+        }
+
+        AdminDeporte ad = new AdminDeporte(archivo.getPath());
+        ad.getDeporteS().add(deporteselect);
+        ad.escribirArchivo();
+
+        double largo = deporteselect.getTorneos().size();
         System.out.println(largo);
 
         if (largo == 0) {
