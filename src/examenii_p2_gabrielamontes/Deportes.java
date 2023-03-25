@@ -1,5 +1,8 @@
 package examenii_p2_gabrielamontes;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -44,7 +47,10 @@ public class Deportes extends javax.swing.JFrame {
         tbl_partidos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jf_posicionestabla = new javax.swing.JFrame();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_posicion = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         pp_deporte = new javax.swing.JPopupMenu();
         jmi_creartorneo = new javax.swing.JMenuItem();
         jmi_guardar = new javax.swing.JMenuItem();
@@ -57,6 +63,7 @@ public class Deportes extends javax.swing.JFrame {
         jmi_crearequipo = new javax.swing.JMenuItem();
         jmi_listarequipos = new javax.swing.JMenuItem();
         jmi_simulacion = new javax.swing.JMenuItem();
+        jmi_tabladeposiciones = new javax.swing.JMenuItem();
         jf_crearpartido = new javax.swing.JFrame();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -66,6 +73,7 @@ public class Deportes extends javax.swing.JFrame {
         js_puntosequipo1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jpb_descargadeporte = new javax.swing.JProgressBar();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtree_periodos = new javax.swing.JTree();
@@ -111,7 +119,7 @@ public class Deportes extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Equipo", "Puntos", "Equipo", "Title 4"
+                "Equipo", "Puntos", "Equipo", "Puntos"
             }
         ));
         jScrollPane3.setViewportView(tbl_partidos);
@@ -132,17 +140,35 @@ public class Deportes extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/d79b63713fbf602ade26b911d511f0ab.jpg"))); // NOI18N
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tbl_posicion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Puntaje"
+            }
+        ));
+        jScrollPane2.setViewportView(tbl_posicion);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 80, 690, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/bdb9d3d01a871d8f88b0030e172e56a0.jpg"))); // NOI18N
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jf_posicionestablaLayout = new javax.swing.GroupLayout(jf_posicionestabla.getContentPane());
         jf_posicionestabla.getContentPane().setLayout(jf_posicionestablaLayout);
         jf_posicionestablaLayout.setHorizontalGroup(
             jf_posicionestablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jf_posicionestablaLayout.setVerticalGroup(
             jf_posicionestablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jmi_creartorneo.setText("Crear torneo");
@@ -154,6 +180,11 @@ public class Deportes extends javax.swing.JFrame {
         pp_deporte.add(jmi_creartorneo);
 
         jmi_guardar.setText("Guardar");
+        jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_guardarActionPerformed(evt);
+            }
+        });
         pp_deporte.add(jmi_guardar);
 
         jPanel3.setBackground(new java.awt.Color(236, 232, 224));
@@ -208,6 +239,14 @@ public class Deportes extends javax.swing.JFrame {
         });
         pp_torneo.add(jmi_simulacion);
 
+        jmi_tabladeposiciones.setText("Tabla de Posiciones");
+        jmi_tabladeposiciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_tabladeposicionesActionPerformed(evt);
+            }
+        });
+        pp_torneo.add(jmi_tabladeposiciones);
+
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setText("Registrar Partido");
@@ -253,6 +292,10 @@ public class Deportes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpb_descargadeporte.setBackground(new java.awt.Color(204, 204, 255));
+        jpb_descargadeporte.setForeground(new java.awt.Color(153, 0, 255));
+        jPanel1.add(jpb_descargadeporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 700, 20));
 
         jButton2.setText("Agregar Deporte");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -307,6 +350,9 @@ public class Deportes extends javax.swing.JFrame {
         String nombretorneo = JOptionPane.showInputDialog("Ingrese el nombre del torneo ");
         Torneo t = new Torneo(nombretorneo, nodo_seleccionado.getParent().toString());
         deporteselect.getTorneos().add(t);
+        for (Torneo torneo : deporteselect.getTorneos()) {
+            System.out.println("torneo: " + torneo);
+        }
         DefaultMutableTreeNode t_obj = new DefaultMutableTreeNode(t);
         nodo_seleccionado.add(t_obj);
         modelo.reload();
@@ -452,6 +498,56 @@ public class Deportes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jmi_simulacionActionPerformed
 
+    private void jmi_tabladeposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_tabladeposicionesActionPerformed
+        ArrayList<Integer> puntos = new ArrayList();
+        ArrayList<Equipo> temp = new ArrayList();
+        for (Equipo equiposparticipante : torneoselect.getEquiposparticipantes()) {
+            puntos.add(equiposparticipante.getPuntos());
+        }
+        Collections.sort(puntos, Collections.reverseOrder());
+        for (Integer p : puntos) {
+            for (Equipo e : torneoselect.getEquiposparticipantes()) {
+                if (e.getPuntos() == p) {
+                    temp.add(e);
+                }
+            }
+        }
+        DefaultTableModel modelocompleto = (DefaultTableModel) tbl_posicion.getModel();
+        while (modelocompleto.getRowCount() > 0) {
+            modelocompleto.removeRow(0);
+        }
+        for (Equipo equipo : temp) {
+            Object[] row = {equipo.getNombre(), equipo.getPuntos()};
+            modelocompleto.addRow(row);
+        }
+
+        tbl_posicion.setModel(modelocompleto);
+        jf_posicionestabla.pack();
+        jf_posicionestabla.setLocationRelativeTo(this);
+        jf_posicionestabla.setVisible(true);
+
+    }//GEN-LAST:event_jmi_tabladeposicionesActionPerformed
+
+    private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
+
+        
+        
+        
+     double largo = deporteselect.getTorneos().size();
+        System.out.println(largo);
+
+        if (largo == 0) {
+            JOptionPane.showConfirmDialog(this, "Descarga realizada, no hay torneos");
+        } else {
+            jpb_descargadeporte.setStringPainted(true);
+            jpb_descargadeporte.setForeground(Color.black);
+            jpb_descargadeporte.setString(deporteselect.getNombre() + " Descarga");
+            AdminHilo ah = new AdminHilo(jpb_descargadeporte, largo);
+            ah.start();
+        }
+
+    }//GEN-LAST:event_jmi_guardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -495,15 +591,17 @@ public class Deportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_verpartidos;
@@ -518,6 +616,8 @@ public class Deportes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_guardar;
     private javax.swing.JMenuItem jmi_listarequipos;
     private javax.swing.JMenuItem jmi_simulacion;
+    private javax.swing.JMenuItem jmi_tabladeposiciones;
+    private javax.swing.JProgressBar jpb_descargadeporte;
     private javax.swing.JSpinner js_puntosequipo1;
     private javax.swing.JSpinner jsp_puntosequipo2;
     private javax.swing.JTree jtree_periodos;
@@ -525,10 +625,12 @@ public class Deportes extends javax.swing.JFrame {
     private javax.swing.JPopupMenu pp_deporte;
     private javax.swing.JPopupMenu pp_torneo;
     private javax.swing.JTable tbl_partidos;
+    private javax.swing.JTable tbl_posicion;
     private javax.swing.JTextField tf_creardeportenombre;
     // End of variables declaration//GEN-END:variables
  DefaultMutableTreeNode nodo_seleccionado;
     Deporte deporteselect;
     Torneo torneoselect;
     Equipo equiposelect;
+
 }
